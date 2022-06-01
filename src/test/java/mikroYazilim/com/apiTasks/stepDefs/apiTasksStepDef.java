@@ -27,7 +27,7 @@ public class apiTasksStepDef {
                         .when().get("https://petstore.swagger.io/v2/pet/findByStatus");
         response.prettyPrint();
         System.out.println("response.statusCode() = " + response.statusCode());
-        Assert.assertEquals(response.statusCode(),200);
+        Assert.assertEquals(200,response.statusCode());
     }
 
 
@@ -77,7 +77,7 @@ public class apiTasksStepDef {
                 .and().body(updateBody).put("https://petstore.swagger.io/v2/user/{username}");
         response.prettyPrint();
         Assert.assertEquals(response.body().jsonPath().getString("message"), updatedID);
-        Assert.assertEquals(response.statusCode(),200);
+        Assert.assertEquals(200,response.statusCode());
 
     }
 
@@ -137,6 +137,7 @@ public class apiTasksStepDef {
 
         System.out.println("response.statusCode() = " + response.statusCode());
         response.prettyPrint();
+        Assert.assertEquals(405,response.statusCode());
         Assert.assertEquals("unknown",response.body().jsonPath().getString("type"));
     }
 
@@ -179,6 +180,7 @@ public class apiTasksStepDef {
 
         Response response1= given().pathParam("username", "Semih").delete("https://petstore.swagger.io/v2/user/{username}");
         response1.prettyPrint();
+        System.out.println("response1.statusCode() = " + response1.statusCode());
         Assert.assertEquals("the user didn't deleted", 404, response1.statusCode());
     }
 
